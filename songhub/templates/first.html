@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O_o Song Hub</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        header {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px;
+            text-align: left; /* Align header to the left */
+        }
+
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 250px; /* Add top margin */
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 27px;
+            /* margin-bottom: 2px; */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px -10px;
+            /* {% comment %} margin-right: 100px; Add margin to the right side {% endcomment %} */
+            border: 1px solid #444;
+            background-color: #222;
+            color: #fff;
+
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1db954;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size :15px;
+        }
+
+        button:hover {
+            background-color: #1ed760;
+            transform: scale(1.025);
+            font-weight: bold;
+        }
+
+        button:active {
+            background-color: #1db954;
+            transform: scale(0.95);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        O_o Song Hub
+    </header>
+    <div class="container">
+        <h1>Spotify Playlist Downloader</h1>
+        <p>Converts your spotify playlist to .mp4 audio files</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" id = 'url' name="url" placeholder="Enter Spotify Playlist URL" required>
+            <button type="submit">Download Songs</button>
+        </form>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloading Songs</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .progress-container {
+            width: 100%;
+            background-color: #444;
+            height: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #1db954;
+            border-radius: 10px;
+            width: 0;
+            position: absolute;
+            animation: progress 2s ease-in-out; /* Remove 'infinite' for a single animation */
+        }
+
+        @keyframes progress {
+            0% { width: 0; background-color: #1db954; }
+            20% { width: 20%; background-color: #ffc107; }
+            40% { width: 40%; background-color: #ff6b6b; }
+            60% { width: 60%; background-color: #FFA39E; }
+            80% { width: 80%; background-color: #FFF956; }
+            100% { width: 100%; background-color: #1db954; }
+        }
+
+        .done-text {
+            font-size: 15px;
+            margin-top: 10px;
+            color: grey; 
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Loading Your Playlist Info...</h1>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar">
+            </div>
+        </div>
+        <div class="done-text" id="done-text"></div>
+    </div>
+</body>
+<script>
+    // Check if the JavaScript code has already run
+    if (typeof window.progressStarted === 'undefined') {
+        window.progressStarted = true;
+
+        // Simulate progress
+        let progress = 0;
+        const progressBar = document.getElementById('progress-bar');
+        const doneText = document.getElementById('done-text');
+
+        const interval = setInterval(() => {
+            if (progress >= 100) {
+                clearInterval(interval);
+                doneText.innerText = "* Downloading your songs, Be patient \n * Download Time ∝ Number of Songs \n * Max limit is top 100 songs of any album";
+
+                // Redirect to "loading 2" after a short delay (e.g., 2 seconds)
+                setTimeout(() => {
+                    window.location.href = "{% url 'loading2' %}";  // Replace with the correct URL
+                }, 2000);
+            } else {
+                progress += 50; // Increase progress
+                progressBar.style.width = progress + '%';
+            }
+        }, 1000);
+    }
+</script>
+</html>
